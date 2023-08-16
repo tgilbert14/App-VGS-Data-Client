@@ -4,7 +4,7 @@
 shinyUI(
   secure_app(head_auth = tags$script(inactivity),
   fluidPage(
-    theme = shinytheme("superhero"),
+    theme = shinytheme("flatly"),
     collapsable = TRUE,
     tags$head(
       HTML(
@@ -18,6 +18,7 @@ shinyUI(
       tags$head(tags$style(HTML(
         paste0('VGS_DataExporter_', Sys.Date())
       ))),
+      
       theme = bs_theme(
         bg = "Gray",
         fg = "DarkTurquoise",
@@ -43,14 +44,15 @@ shinyUI(
       style = "font-family: 'Jura'; color: dark blue; font-size: 14px;"
     ),
     
-    # Sidebar with a slider input for number of bins
+    # Sidebar
     tabsetPanel(
+      
       tabPanel(
         'Data Upload',
         br(),
         
         #
-        #sidebarPanel(width = 4,
+        box(width = 3,
           fileInput(
             'file1',
             'Upload Excel from VGS Export',
@@ -76,12 +78,13 @@ shinyUI(
             selectize = T
           ),
           htmlTemplate("template.html",
-                       button = submitButton("Load Data Table")),
+                       button = submitButton("Load Data Table"))),
           
           p("Contact tsgilbert@arizona.edu with any feedback",
             style = "font-family: 'Jura'; color: dark blue; font-size: 14px;"),
       #mainPanel(width = 8,
-          DT::dataTableOutput('file_upload')
+      box(width = 9,
+          DT::dataTableOutput('file_upload'))
 
       ),
       

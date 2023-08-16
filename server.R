@@ -12,6 +12,9 @@ shinyServer(function(input, output, session) {
     file_data<- input$file1
     req(file_data)
     
+    ##tester
+    #fname<- paste0("C:/Users/tsgil/Downloads/Raw XLS Export (10).xlsx")
+    
     fname <- file_data$datapath
     sheets <- readxl::excel_sheets(fname)
     tibble <- lapply(sheets, function(x) readxl::read_excel(fname, sheet = x))
