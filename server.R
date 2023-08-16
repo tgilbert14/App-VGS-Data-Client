@@ -112,13 +112,6 @@ shinyServer(function(input, output, session) {
                           class = "compact cell-border hover display",
                           filter = list(position = "top", plain = TRUE))
     
-    # Create a temporary file to store the zip file
-    f_path <- utils::choose.dir()
-    # Open file folder?
-    if (.open_folder){
-      shell.exec(f_path)
-    }
-    
   },server=TRUE)
 
 
@@ -163,13 +156,6 @@ shinyServer(function(input, output, session) {
                                style = "bootstrap",
                                class = "compact cell-border hover display",
                                filter = list(position = "top", plain = TRUE))
-      
-      # Create a temporary file to store the zip file
-      f_path <- utils::choose.dir()
-      # Open file folder?
-      if (.open_folder){
-        shell.exec(f_path)
-      }
       
   },server=TRUE)
   
