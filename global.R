@@ -18,13 +18,14 @@ library(shinymanager)
 options(shiny.maxRequestSize=30*1024^2)
 
 
-# data.frame with credentials info
+##data.frame with credentials info
 credentials <- data.frame(
-  user = c("1", "fanny", "victor", "benoit"),
-  password = c("1", "azerty", "12345", "azerty"),
-  # comment = c("alsace", "auvergne", "bretagne"), %>% 
+  user = c(""," "),
+  password = c(""," "),
+  # comment = c("alsace", "auvergne", "bretagne"), %>%
   stringsAsFactors = FALSE
 )
+
 
 inactivity <- "function idleTimer() {
 var t = setTimeout(logout, 900000);
