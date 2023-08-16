@@ -7,7 +7,7 @@ shinyServer(function(input, output, session) {
   output$res_auth <- renderPrint({
     reactiveValuesToList(result_auth)
   })
-  
+
   pickA <- reactive({
     file_data<- input$file1
     req(file_data)
@@ -20,7 +20,8 @@ shinyServer(function(input, output, session) {
     tibble <- lapply(sheets, function(x) readxl::read_excel(fname, sheet = x))
     data_frame <- lapply(tibble, as.data.frame)
     names(data_frame) <- sheets
-    a2 <- sheets
+    a2 <- substring(sheets,1,18)
+    a2 <- paste0(a2,"...")
     return(a2)
   })
   
@@ -110,9 +111,17 @@ shinyServer(function(input, output, session) {
                           style = "bootstrap",
                           class = "compact cell-border hover display",
                           filter = list(position = "top", plain = TRUE))
+    
+    # Create a temporary file to store the zip file
+    f_path <- utils::choose.dir()
+    # Open file folder?
+    if (.open_folder){
+      shell.exec(f_path)
+    }
+    
   },server=TRUE)
 
-  
+
   output$wMat_output<- DT::renderDataTable({
     my_data<- reactive_data()
     req(my_data)
@@ -143,8 +152,6 @@ shinyServer(function(input, output, session) {
       base::source('r6_colville_height_curve.R', local=TRUE)
     }
     
-    
-      
       my_data <- DT::datatable(data2, editable = TRUE, rownames = FALSE,
                                extensions = 'Buttons',
                                options = list(pageLength = 100000,
@@ -156,6 +163,14 @@ shinyServer(function(input, output, session) {
                                style = "bootstrap",
                                class = "compact cell-border hover display",
                                filter = list(position = "top", plain = TRUE))
+      
+      # Create a temporary file to store the zip file
+      f_path <- utils::choose.dir()
+      # Open file folder?
+      if (.open_folder){
+        shell.exec(f_path)
+      }
+      
   },server=TRUE)
   
   output$tool_output<- renderPlotly({

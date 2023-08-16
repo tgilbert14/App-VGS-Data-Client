@@ -52,7 +52,7 @@ shinyUI(
         br(),
         
         #
-        box(width = 3,
+        box(width = 2,
           fileInput(
             'file1',
             'Upload Excel from VGS Export',
@@ -62,7 +62,7 @@ shinyUI(
           ),
           selectInput(
             'select_sheet',
-            'Select Excel Sheet: ',
+            'Select Excel Sheet (Method): ',
             choices = NULL ,
             selected = F,
             multiple = F
@@ -83,12 +83,11 @@ shinyUI(
           p("Contact tsgilbert@arizona.edu with any feedback",
             style = "font-family: 'Jura'; color: dark blue; font-size: 14px;"),
       #mainPanel(width = 8,
-      box(width = 9,
+      box(width = 10,
           DT::dataTableOutput('file_upload'))
 
       ),
-      
-      
+
       tabPanel(
         'Run Script',
         br(),
